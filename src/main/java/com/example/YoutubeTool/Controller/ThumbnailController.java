@@ -1,7 +1,7 @@
 package com.example.YoutubeTool.Controller;
 
 
-import com.YouTubeTools.Service.ThumbnailService;
+import com.example.YoutubeTool.Service.ThumbnailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +30,7 @@ public class ThumbnailController {
         }
 
         String thumbnailUrl="https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
+        model.addAttribute("videoId", thumbnailUrl);
         model.addAttribute("thumbnailUrl",thumbnailUrl);
         return "thumbnails";
     }
