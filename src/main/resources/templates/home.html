@@ -100,9 +100,11 @@
         </div>
         <button type="button"
                 class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2"
-                th:onclick="'copyTags(\\'' + ${primaryVideo.tagsAsString} + '\\')'">
+                th:attr="data-tags=${primaryVideo.tagsAsString}"
+                onclick="copyTags(this.getAttribute('data-tags'))">
           <i class="bi bi-clipboard2-check"></i> Copy Tags
         </button>
+
       </div>
       <div class="text-slate-600 dark:text-slate-400 mb-4" th:text="${primaryVideo.title}"></div>
       <div class="text-slate-600 dark:text-slate-400 mb-4" th:text="${primaryVideo.channelTitle}"></div>
@@ -123,7 +125,8 @@
         </div>
         <button type="button"
                 class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2"
-                th:onclick="'copyTags(\\'' + ${allTagsAsString} + '\\')'">
+                th:attr="data-tags=${allTagsAsString}"
+                onclick="copyTags(this.getAttribute('data-tags'))">
           <i class="bi bi-clipboard2"></i> Copy All
         </button>
       </div>

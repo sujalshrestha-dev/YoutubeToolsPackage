@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/youtube")
 public class YouTubeTagsController {
@@ -43,12 +45,20 @@ public class YouTubeTagsController {
             SearchVideo result=youTubeService.searchVideos(videoTitle);
             model.addAttribute("primaryVideo",result.getPrimaryVideo());
             model.addAttribute("relatedVideos",result.getRelatedVideos());
+
+            String allTagsAsString = result.getRelatedVideos().stream()
+                    .flatMap(video -> video.getTags().stream())
+                    .distinct()
+                    .collect(Collectors.joining(", "));
+            model.addAttribute("allTagsAsString", allTagsAsString);
+
+
             return "home";
         }catch (Exception e){
             model.addAttribute("error",e.getMessage());
             return "home";
         }
-        return null;
+
     }
 
 }

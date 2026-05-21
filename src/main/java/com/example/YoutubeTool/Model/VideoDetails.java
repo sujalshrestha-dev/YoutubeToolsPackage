@@ -12,11 +12,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Video {
+public class VideoDetails {
     private String id;
-    private String channelTitle;
     private String title;
+    private String description;
     private List<String> tags;
+    private String thumbnailUrl;
+    private String channelTitle;
+    private String publishedAt;
 
     public String getTagsAsString() {
         if (tags == null || tags.isEmpty()) return "";
